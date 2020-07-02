@@ -7,7 +7,7 @@ from django.db import models
 # ref: https://docs.djangoproject.com/en/3.0/ref/models/fields/
 
 
-# data,stato,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_positivi,variazione_totale_positivi,nuovi_positivi,dimessi_guariti,deceduti,totale_casi,tamponi,casi_testati,note_it,note_en
+# data,stato,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_positivi,variazione_totale_positivi,nuovi_positivi,dimessi_guariti,deceduti,casi_da_sospetto_diagnostico,casi_da_screening,totale_casi,tamponi,casi_testati,note
 class Nazione(models.Model):
     data = models.CharField(max_length=20, unique=True)
     stato = models.CharField(max_length=3)
@@ -20,14 +20,15 @@ class Nazione(models.Model):
     nuovi_positivi = models.IntegerField(null=True)
     dimessi_guariti = models.IntegerField(null=True)
     deceduti = models.IntegerField(null=True)
+    casi_da_sospetto_diagnostico = models.IntegerField(null=True)
+    casi_da_screening = models.IntegerField(null=True)
     totale_casi = models.IntegerField(null=True)
     tamponi = models.IntegerField(null=True)
     casi_testati = models.IntegerField(null=True)
-    note_it = models.TextField(null=True)
-    note_en = models.TextField(null=True)
+    note = models.TextField(null=True)
 
 
-# data,stato,codice_regione,denominazione_regione,lat,long,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_positivi,variazione_totale_positivi,nuovi_positivi,dimessi_guariti,deceduti,totale_casi,tamponi,casi_testati,note_it,note_en
+# data,stato,codice_regione,denominazione_regione,lat,long,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_positivi,variazione_totale_positivi,nuovi_positivi,dimessi_guariti,deceduti,casi_da_sospetto_diagnostico,casi_da_screening,totale_casi,tamponi,casi_testati,note
 class Regione(models.Model):
     data = models.CharField(max_length=20)
     stato = models.CharField(max_length=3)
@@ -44,16 +45,18 @@ class Regione(models.Model):
     nuovi_positivi = models.IntegerField(null=True)
     dimessi_guariti = models.IntegerField(null=True)
     deceduti = models.IntegerField(null=True)
+    casi_da_sospetto_diagnostico = models.IntegerField(null=True)
+    casi_da_screening = models.IntegerField(null=True)
     totale_casi = models.IntegerField(null=True)
     tamponi = models.IntegerField(null=True)
     casi_testati = models.IntegerField(null=True)
-    note_it = models.TextField(null=True)
-    note_en = models.TextField(null=True)
+    note = models.TextField(null=True)
 
     class Meta:
         unique_together = (("data", "codice_regione"),) # pseudo-composite key
 
 
+# data,stato,codice_regione,denominazione_regione,codice_provincia,denominazione_provincia,sigla_provincia,lat,long,totale_casi,note
 class Provincia(models.Model):
     data = models.CharField(max_length=20)
     stato = models.CharField(max_length=3)
@@ -65,8 +68,7 @@ class Provincia(models.Model):
     lat = models.CharField(max_length=20)
     long = models.CharField(max_length=20)
     totale_casi = models.IntegerField(null=True)
-    note_it = models.TextField(null=True)
-    note_en = models.TextField(null=True)
+    note = models.TextField(null=True)
 
     class Meta:
         unique_together = (("data", "codice_provincia"),) # pseudo-composite key
