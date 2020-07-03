@@ -6,7 +6,6 @@ from django.http import HttpResponse
 from django.core import serializers
 from dashboard.models import Regione, Nazione, Provincia
 
-
 def calculateDetailsForState():
     labels = set()
     ricoverati_con_sintomi = []
@@ -261,3 +260,7 @@ def home(request):
     ita["regions"] = regions
 
     return render(request, "dashboard/home.html", ita)
+
+
+def thanh_guong(request):
+    return render(request, "thanh-guong/thanh-guong.html")
