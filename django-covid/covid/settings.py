@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'super_secret_key'
+SECRET_KEY = 'secret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['falcao5.ddns.net']
+ALLOWED_HOSTS = ['falcoserver', 'falcao5.ddns.net', 'covid-falcao5.ddns.net']
 
 # Application definition
 
@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'covid.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'your_database_name',
-        'USER': 'your_database_user',
-        'PASSWORD': 'ultra_secret_password',
-        'HOST': 'your_host',
-        'PORT': 'your_port',
+        'NAME': 'covid',
+        'USER': 'covid-write',
+        'PASSWORD': 'secret',
+        'HOST': 'db',
+        'PORT': '',
     }
 }
 

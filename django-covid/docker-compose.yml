@@ -1,0 +1,27 @@
+version: "3"
+services:
+    covid:
+        container_name: django-covid
+        build: .
+        ports:
+            - 7854:8000
+        restart: unless-stopped
+        volumes:
+            - ./data:/data
+        depends_on:
+            -   db
+    db:
+        container_name: django-covid-db
+        image: postgres
+        ports:
+            - 5555:5432
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: covid-write
+            POSTGRES_DB: covid
+            POSTGRES_PASSWORD: s3cret
+        volumes:
+        -   ./data:/data
+
+volumes:
+    data:

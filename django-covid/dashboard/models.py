@@ -26,6 +26,9 @@ class Nazione(models.Model):
     tamponi = models.IntegerField(null=True)
     casi_testati = models.IntegerField(null=True)
     note = models.TextField(null=True)
+    ingressi_terapia_intensiva = models.IntegerField(null=True)
+    note_test = models.TextField(null=True)
+    note_casi = models.TextField(null=True)
 
 
 # data,stato,codice_regione,denominazione_regione,lat,long,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_positivi,variazione_totale_positivi,nuovi_positivi,dimessi_guariti,deceduti,casi_da_sospetto_diagnostico,casi_da_screening,totale_casi,tamponi,casi_testati,note
@@ -51,6 +54,9 @@ class Regione(models.Model):
     tamponi = models.IntegerField(null=True)
     casi_testati = models.IntegerField(null=True)
     note = models.TextField(null=True)
+    ingressi_terapia_intensiva = models.IntegerField(null=True)
+    note_test = models.TextField(null=True)
+    note_casi = models.TextField(null=True)
 
     class Meta:
         unique_together = (("data", "codice_regione"),) # pseudo-composite key
